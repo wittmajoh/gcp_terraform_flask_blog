@@ -1,0 +1,8 @@
+src/.env
+src/__pycache__
+infrastructure
+cloudbuild.yaml
+Dockerfile
+schema.sql
+deploy_to_cloud.sh
+basic_setting.drawio.svg
