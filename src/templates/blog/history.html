@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}History{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+    </tr>
+{% for post in posts %}
+    <tr>
+        <td> <a class="action" href="{{ url_for('blog.show_post', id=post.post_id) }}">{{ post.title }}</a></td>
+        <td>{{ post.created }}</td>
+    </tr>
+{% endfor %}
+{% endblock %}

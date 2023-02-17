@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker' # name of the cloud-builder
+  args: [ 'build', '-t', 'eu.gcr.io/my-flask-app-project/blog-flask-app:latest', '.' ] # list of arguments given to the cloud-builder
+images: ['eu.gcr.io/my-flask-app-project/blog-flask-app:latest'] # linux docker image that cloud build pushes to container registry
+

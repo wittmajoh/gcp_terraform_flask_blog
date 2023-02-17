@@ -1,0 +1,38 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - my_flask_blog</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1>my_flask_blog</h1>
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user.username }}</span>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% endif %}
+  </ul>
+</nav>
+
+<nav>
+  <ul>
+    <li><a class="action" href="{{ url_for('blog.index') }}">Home</a>
+    <li><a class="action" href="{{ url_for('blog.history') }}">History</a>
+  </ul>
+</nav>
+
+
+<figure>
+  <img src="{{ url_for('static', filename='cover_image.jpg' )}}" alt="cover_image" style="width:100%">
+</figure>
+
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+  {% block bottom %}{% endblock %}
+</section>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block header %}
+  <h1>Posts</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('blog.create') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if post is not none %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ post.title }}</h1>
+          <div class="about">by {{ post.username }} on {{ post.created.strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user.user_id == post.user_id %}
+          <a class="action" href="{{ url_for('blog.update', id=post.post_id) }}">Edit</a>
+        {% endif %}
+      </header>
+      {% if post.image_url is not none %}
+        <figure>
+          <img src="{{ post.image_url }}" alt="image" style="margin:auto; max-width:100%; display:block">
+        </figure>
+      {% endif %}
+      <p class="body">{{ post.body }}</p>
+    </article>
+  {% endif %}
+{% endblock %}
+
+
+
+{% block bottom %}
+<div style="display: flex; justify-content: space-between;">
+  {% if previous_post is not none %}
+  <a class="action" href="{{ url_for('blog.show_post', id=previous_post.post_id) }}">
+    Previous Post
+  </a>
+  {% else %}
+  <a></a>
+  {% endif %}
+  {% if next_post is not none %}
+  <a class="action" href="{{ url_for('blog.show_post', id=next_post.post_id) }}">
+    Next Post 
+  </a>
+  {% else %}
+  <a></a>
+  {% endif %}
+</div>
+{% endblock %}
