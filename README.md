@@ -4,7 +4,7 @@ We set up a Flask app as a Cloud Run instance using Terraform.
 
 The Flask app is a blog where users can post text and images. It is based on [Flaskr](https://flask.palletsprojects.com/en/2.2.x/tutorial/).
 
-The posts and user data are are stored in a Cloud SQL database. The images are stored in a storage bucket.  
+The posts and user data are stored in a Cloud SQL database. The images are stored in a storage bucket.  
 
 ![basic setting](basic_setting.drawio.svg)
 
