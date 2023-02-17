@@ -24,7 +24,7 @@ We assume that [gcloud CLI](https://cloud.google.com/sdk/docs/install?hl=en) and
    * Names of the secrets are not important.
    * Don't forget to fill in values for the secrets. 
 4. Open [terraform.tfvars](infrastructure/terraform.tfvars).
-   * Replace the value of the variable _project_ with the id of the project you created in step 1. (Note that the id of your project might be different from its name.)
+   * Replace the value of the variable _project_ with the id of the project you created in step 2. (Note that the id of your project might be different from its name.)
    * Replace the value of the variable _bucket_name_ with the name of the storage bucket where the images will be stored. This bucket will be created and managed by terraform and is different from the bucket you created in step 1. (Choose any name you like. If you choose a name that already exists, you will get an error in step 7.)
    * Replace the values of the variables _database_user_password_secret_name_ and _flask_secret_key_secret_name_ with the secret names you chose in step 3.
 5. Open [backend.tf](infrastructure/backend.tf).
