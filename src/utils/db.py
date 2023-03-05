@@ -146,8 +146,8 @@ def get_next_post(post_id):
     LIMIT 1
     """,
     )
-    previous_post = db.execute(query, {"post_id": post_id}).fetchone()
-    return previous_post
+    next_post = db.execute(query, {"post_id": post_id}).fetchone()
+    return next_post
 
 
 def get_image_name(post_id):
