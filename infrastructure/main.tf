@@ -39,7 +39,7 @@ resource "google_cloud_run_service" "cloud-run" {
           name = "FLASK_SECRET_KEY"
           value_from {
             secret_key_ref {
-              name = data.google_secret_manager_secret.flask_secret.secret_id
+              name = var.flask_secret_key_secret_name
               key  = "latest"
             }
           }
@@ -48,7 +48,7 @@ resource "google_cloud_run_service" "cloud-run" {
           name = "DATABASE_USER_PASSWORD"
           value_from {
             secret_key_ref {
-              name = data.google_secret_manager_secret.database_user_password_secret.secret_id
+              name = var.database_user_password_secret_name
               key  = "latest"
             }
           }
@@ -58,8 +58,9 @@ resource "google_cloud_run_service" "cloud-run" {
     }
     metadata {
       annotations = {
-        "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.instance.connection_name 
-        # c.f. https://cloud.google.com/sql/docs/mysql/connect-run?hl=en#terraform
+        "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.instance.connection_name # c.f. https://cloud.google.com/sql/docs/mysql/connect-run?hl=en#terraform
+        "autoscaling.knative.dev/minScale" = 1 # keep at least one instance running all the time to avoid cold starts
+        "run.googleapis.com/startup-cpu-boost" = true
       }
     }
   }
